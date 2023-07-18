@@ -1,0 +1,265 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /* border: 1px solid black; */
+    font-size: 18px;
+}
+
+body {
+    height: 100%;
+    min-height: fit-content;
+    min-width: fit-content;
+    background: rgb(192, 190, 190);
+}
+
+h2 {
+    font-size: 1.1rem;
+    margin: 0.7em;
+}
+h3 h4 h5 {
+    display: inline-block;
+}
+.budget-app { 
+    color: aliceblue;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px gray;
+    position: relative;
+    margin: 8% auto;
+    /* display: flex; */
+    width: 1050px;
+    min-height: 600px;
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr;
+    background: linear-gradient(rgb(0, 0, 0), rgb(73, 73, 73));
+}
+
+.income-box {
+    display: flex;
+    align-items: center;
+}
+
+
+.income-box, p, label, select {
+    padding: 0.5em 0.5em 0.5em 0.85em;
+    margin-left: 1rem;
+    font-size: 1.05rem;
+}
+
+#currency, #expenseType {
+    padding: 0.25em;
+    margin-left: unset;
+    height: 1.8em;
+}
+
+
+#incomeInput {
+    padding-left: 0.9em;
+    border-radius: 25px;
+    height: 2.5em;
+}
+#expense {
+    padding-left: 0.85em;
+    border-radius: 15px;
+    height: 1.8em;
+    max-width: 245px;
+}
+
+#amount {
+    padding-left: 0.8em;
+    border-radius: 15px;
+    height: 1.8em;
+    max-width: 100px;
+}
+
+
+.expenses-container {
+    border-top: 2px solid rgba(244, 244, 245, 0.438);
+    border-bottom: 2px solid rgba(244, 244, 245, 0.438);
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    padding-top: 0.85em;
+    padding-bottom: 0.85em;
+}
+
+.left-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-container label {
+    margin-left: unset;
+}
+
+.expense-input-container {
+    /* display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr; */
+
+    /* Flex DISPLAY */
+
+    display: flex;
+    margin-right: 1.8em;
+    margin-left: 1.8em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+input, button {
+    border-width: 0;
+}
+.button {
+    width: 5rem;
+    height: 2rem;
+    border-radius: 20px;
+    
+    transition-duration: 250ms;
+}
+
+.button:hover {
+   background: rgb(255, 228, 74);
+}
+
+.remaining-budget {
+    border-left: 2px solid rgba(244, 244, 245, 0.438);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50%;
+    word-break: break-word;
+}
+hr {
+    width: 75%;
+    margin: 0 auto;
+    height: 2px;
+}
+.remaining-budget h3 {
+    
+    font-size: 1.3rem;
+    padding-top: 1.2em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.total {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr 3fr;
+}
+
+.total h2 {
+    margin: auto;
+    /* padding: 1.5em; */
+}
+
+.total h3 {
+    margin: auto 0;
+    font-size: 1.3rem;
+}
+
+
+.list-item {
+    /* grid-area: one; */
+    width: 280px;
+    max-width: 2000px;
+
+    overflow: hidden;
+    /* border-left: 1px solid rgba(255, 255, 255, 0.3); */
+    /* word-break: break-word; */
+    overflow: auto;
+}
+
+.amount-item {
+    /* grid-area: two; */
+    text-align: center;
+    overflow: hidden;
+    /* border-left: 1px solid rgba(255, 255, 255, 0.3); */
+    width: 180px;
+    max-width: 2000px;
+    /* word-break: break-word; */
+    overflow: auto;
+}
+
+.list-type {
+    /* grid-area: three; */
+    text-align: center;
+    overflow: hidden;
+    width: 220px;
+    max-width: 2000px;
+
+    /* border-left: 1px solid rgba(255, 255, 255, 0.3); */
+    /* word-break: break-word; */
+    overflow: auto;
+}
+
+.empty {
+   /* grid-area: four; */
+   max-width: 180px;
+   /* min-width: 3rem; */
+   border-left: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.list-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-areas: 
+    'one one one two two three three four'
+    'one one one two two three three four'
+    'one one one two two three three four'; */
+    margin: 2rem;
+    height: 100%;
+    max-height: 100%;
+    
+}
+
+
+
+.list-container ul {
+    list-style: none;
+}
+
+.list-container ul li {
+    padding: 0.4em;
+}
+
+
+
+
+
+.groceries {
+    background: rgba(84, 245, 218, 0.514);
+}
+
+.bills {
+    background: rgba(255, 163, 163, 0.836);
+}
+
+.luxury {
+    background: rgba(255, 255, 167, 0.486);
+}
+
+.health {
+    background: rgba(249, 186, 255, 0.404)
+}
+
+
+/*  LIST OVERLAY */
+
+.list-overlay {
+    display: flex;
+    flex-direction: row;
+    background: rgba(253, 221, 221, 0.247);
+    height: 100%;
+
+}
+
+.hide {
+    display: none;
+}
+
+
+.currency-sign {
+    font-size: 1rem;
+}
+

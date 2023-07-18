@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- <div class="app-container"> -->
+        <div class="budget-app">
+            <div id="incomeBox" class="income-box">
+                <input type="text" value="" placeholder="Your income" id="incomeInput" requierd />
+                <label for="currency">Choose a currency</label>
+                <select name="currency" id="currency" >
+                    <option value="dollar">$</option>
+                    <option value="euro">€</option>
+                    <option value="dinar">RSD</option>
+                </select>
+            </div>
+
+            <div class="expenses-container">
+                <div class="left-container">
+                    <div class="expense-input-container">
+
+                        <label for="expense">
+                            <input id="expense" value="" type="text" placeholder="Insert your expenses here" required />
+                        </label>
+                        <label for="amount">
+                            <input id="amount" value="" type="text" placeholder="Amount"  required />
+                        </label>
+                        <label for="expenseType">Type:
+                            <select name="expenseType" id="expenseType">
+                            <option value="groceries">Groceries</option>
+                            <option value="bills">Bills</option>
+                            <option value="luxury">Luxury</option>
+                            <option value="health">Health</option>   
+                            </select>
+                        </label>
+                        <button id="addButton" class="button">Add item</button>
+                    </div>
+                
+                    <div class="list-container">
+
+                        <ul id="listItem" class="list-item">
+                            <!-- <li></li>
+                            <li></li>  -->
+                
+                        </ul>
+                        <ul id="amountItem" class="amount-item">
+                            <!-- <li class="groceries">100</li>
+                            <li class="luxury">261</li> -->
+                        </ul>
+                        <ul id="listType" class="list-type">
+                            <!-- <li>100</li>
+                            <li>261</li> -->
+                        </ul>
+                        <div class="empty"></div>
+                    </div>
+
+                </div>
+                <div class="remaining-budget">
+                    <h2>Remaining budget</h2>
+                    <hr>
+                    <h3 id="remainingBudget" class="hide"><span class="currency-sign"></span></h3>
+                </div>
+            </div>
+            <div id="total" class="total">
+                <h2>Total expense</h2>
+                <h3 id="totalExpense"><span class="currency-sign"></span><!-- CALCULATE AND INSERT A TAG FROM JAVASCRIPT --></h3>
+                
+                <h2>Total savings</h2>
+                <h3 id="totalSavings"><span class="currency-sign"></span><!-- CALCULATE AND INSERT A TAG FROM JAVASCRIPT --></h3>
+               
+            </div>
+        </div>
+    <!-- </div> -->
+</body>
+<script src="script.js"></script>
+</html>
