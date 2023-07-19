@@ -54,6 +54,13 @@ income.addEventListener('input', updateAmountState)
 amount.addEventListener('input', validateInputAmount);
 currency.addEventListener('input', selectCurrency);
 
+
+function clearExpenseText() {
+    expense.value = '';
+}
+
+
+
 // SETTING AN ENABLED/DISABLED FLAG FOR FUNCTIONS //
 let enabled = false;
 
@@ -153,8 +160,6 @@ function updateCurrencySigns(value, text) {
 
 function remainingBudget() {
 
-        checkIfEnabled();
-
         if (enabled === true) {
             listExpenses += enteredAmountNum;
             
@@ -227,9 +232,15 @@ function addListItem() {
             }   else {
                     return;
             };
+
+
             listItemText.appendChild(listItem);
             listItemAmount.appendChild(currentItemAmount);
             currentItemAmount.appendChild(insertedCurrencySign);
             listItemTypeText.appendChild(listItemType);
-    };
+
+            clearExpenseText();
+    } else {
+        window.alert("Please complete all fields");
+    }
 }
