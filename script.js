@@ -34,6 +34,8 @@ let currentExpenseType;
 function defaultState() {
    const defaultCurrencyText = document.getElementById('currency');
    selectedCurrencyText = defaultCurrencyText.options[0].text;
+   document.querySelector('div.remaining-budget-amounts h4.currency-sign').textContent = selectedCurrencyText;
+   document.querySelector('div.total-expense-amounts h4.currency-sign').textContent = selectedCurrencyText;
 }
 defaultState();
 
