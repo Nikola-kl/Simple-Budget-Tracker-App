@@ -6,7 +6,8 @@ const expenseType = document.getElementById('expenseType');
 const addButton = document.getElementById('addButton');
 const budgetValue = document.getElementById('remainingBudget');
 const totalExpense = document.getElementById('totalExpense');
-const totalSavings = document.getElementById('totalSavings');
+
+
 
 
     //variables for list items and values //
@@ -29,8 +30,6 @@ let defaultCurrency;
 let listExpenses = 0;
 let currentExpenseType;
 
-let incomeNumberResult;
-let listItemAMountResult;
 
 function defaultState() {
    const defaultCurrencyText = document.getElementById('currency');
@@ -38,49 +37,68 @@ function defaultState() {
 }
 defaultState();
 
-    // SETTING AN ENABLED/DISABLED FLAG FOR FUNCTIONS //
+    
 
 
 
-addButton.addEventListener('click', addListItem);
-addButton.addEventListener('click', remainingBudget);
+addButton.addEventListener('click', addButtonEvents);
+function addButtonEvents() {
+    addListItem();
+    remainingBudget();
+}
   
-
-
-income.addEventListener('input', validateInput);
+income.addEventListener('input', validateInputIncome);
 income.addEventListener('input', updateAmountState)
-amount.addEventListener('input', validateInput);
+amount.addEventListener('input', validateInputAmount);
 currency.addEventListener('input', selectCurrency);
 
+// SETTING AN ENABLED/DISABLED FLAG FOR FUNCTIONS //
 let enabled = false;
 
 function checkIfEnabled() {
     if (income.value !== '' && amount.value !== '' && expense.value !== '') {
         enabled = true;
+    } else {
+        enabled = false;
     }
 }
 
     // Function to validate the input fields //
 
-function validateInput() {
+function validateInputIncome() {
     //allows only numbers
     income.value = income.value.replace(/[^0-9]/g, ''); 
+
+    //blocks the first character to be 0 
+    //--(if copied there is a bug that removes the number previously typed in)--
+    //     BUG SOLVED BY DIVIDING INTO SEPARATE FUNCTIONS //
+
+    if (income.value[0] === '0') {
+       
+        income.value = income.value.substring(1); 
+       
+    }
+   
+    //sets the income values to numbers
+    const enteredIncome = income.value;
+    enteredIncomeNum = Number(enteredIncome);
+    updateAmountState(enteredIncomeNum);
+}
+
+
+function validateInputAmount() {
+    //allows only numbers
+    
     amount.value = amount.value.replace(/[^0-9]/g, ''); 
 
     //blocks the first character to be 0 
     //--(if copied there is a bug that removes the number previously typed in)--
-    if (income.value[0] === '0' || amount.value[0] === '0') {
-        console.log('remove', typeof(income.value));
-        income.value = income.value.substring(1); 
+    if (amount.value[0] === '0') {
         amount.value = amount.value.substring(1);
-    }
-   
-    //sets the income and amount values to numbers
-    const enteredIncome = income.value;
+    }  
+    //sets the amount values to numbers
     const enteredAmount = amount.value;
     enteredAmountNum = Number(enteredAmount);
-    enteredIncomeNum = Number(enteredIncome);
-    updateAmountState();
 }
 
 
@@ -90,48 +108,44 @@ function updateAmountState() {
    budgetValue.classList.remove('hide');
 
    budgetValueNum = enteredIncomeNum - listExpenses;
+   const existingSpanElement = document.querySelectorAll('h3 > span.currency-sign');
+    existingSpanElement.forEach(selectCurrency);
+      
 
-   totalSavings.innerText = `${budgetValueNum}${selectedCurrencyText}`;
-   budgetValue.innerText = `${budgetValueNum}${selectedCurrencyText}`;
-   changeSpan()
+   budgetValue.textContent = `${budgetValueNum}`;
 }
 
 
         // CURRENCY AND ITEM TYPE SELECTION //
 
 function selectCurrency() {
-
-    //assigns the value of the selected option
+    
+    //assigns the value of the selected currency option
     const currentCurrency = currency.options[currency.selectedIndex];
 
     selectedCurrencyText = currentCurrency.text;
     selectedCurrencyValue = currentCurrency.value;
-    // updateCurrency(selectedCurrencyText, selectedCurrencyValue);
-    // setCurrencyText()
-    changeSpan()
+
+    updateCurrencySigns(selectedCurrencyValue, selectedCurrencyText);
 }
 
 
-    // SELECTING AND CHANGING THE SPAN TEXT OF CURRENCY //
-
-function changeSpan() {
-    const spanElementsTotal = document.querySelectorAll('span.currency-sign');
-        Array.from(spanElementsTotal).forEach(function(spanElement) {
-            if (selectedCurrencyValue === 'dollar') {
-                spanElement.innerHTML = '$';
-                console.log('yay a dollar');
-            } else if (selectedCurrencyValue === 'euro') {
-                spanElement.innerHTML = '€';
-                console.log('yay a euro');
-            } else if (selectedCurrencyValue === 'dinar') {
-                spanElement.innerHTML = 'DINAR';
-                console.log('yay a dinar');
-            }
-        })
+function updateCurrencySigns(value, text) {
+    const spanElementsTotal = document.querySelectorAll('h4.currency-sign, span.currency-sign');
+    Array.from(spanElementsTotal).forEach(function(spanElement) {
+        if (value === 'dollar') {
+            spanElement.innerHTML = text;
+            // console.log('yay a dollar');
+        } else if (value === 'euro') {
+            spanElement.innerHTML = text;
+            // console.log('yay a euro');
+        } else if (value === 'dinar') {
+            spanElement.innerHTML = text;
+            // console.log('yay a dinar');
+        }
+    })
+    
 }
-
-
-
 
             // REMAINING BUDGET CALCULATION WHEN ADD ITEM BUTTON IS CLICKED //
 
@@ -140,16 +154,13 @@ function remainingBudget() {
         checkIfEnabled();
 
         if (enabled === true) {
-            totalSavings.classList.remove('hide');
             listExpenses += enteredAmountNum;
             
-            totalExpense.innerText = `${listExpenses}${selectedCurrencyText}`;
-            budgetValue.innerText = `${enteredIncomeNum - listExpenses}${selectedCurrencyText}`;
-            totalSavings.innerText = `${enteredIncomeNum - listExpenses}${selectedCurrencyText}`;
-        };
-}
-
-
+            totalExpense.innerText = `${listExpenses}`;
+            budgetValue.innerText = `${enteredIncomeNum - listExpenses}`;
+          
+        }
+    }
         // CREATES A LIST ITEM WITH THE INSERTED VALUES AND DESCRIPTION //
 function addListItem() {
  
@@ -157,20 +168,23 @@ function addListItem() {
 
     if (enabled === true) {
 
-        
+            document.querySelector('div.remaining-budget-amounts').classList.remove('hide');
+            document.querySelector('div.total-expense-amounts').classList.remove('hide');
+
             const listItem = document.createElement('li');
             listItem.innerHTML = expense.value;
-            console.log(listItem.innerHTML);
+            // console.log(listItem.innerHTML);
 
             const currentItemAmount = document.createElement('li');
             insertedCurrencySign = document.createElement('span');
             insertedCurrencySign.innerHTML = selectedCurrencyText;
             currentItemAmount.innerHTML = amount.value;
-            console.log(currentItemAmount.innerHTML);
+            // console.log(currentItemAmount.innerHTML);
 
             const listItemType = document.createElement('li');
             listItemType.innerHTML = expenseType.value;
-            console.log(listItemType.innerHTML);
+            // console.log(listItemType.innerHTML);
+
 
 
             if (listItemType.innerHTML == 'groceries') {
@@ -201,8 +215,15 @@ function addListItem() {
                     insertedCurrencySign.classList.add('currency-sign');
                     listItemType.classList.add('health');
 
-            } else {
-                return;
+            }   else if (listItemType.innerHTML === 'other'){
+
+                listItem.classList.add('other');
+                currentItemAmount.classList.add('other');
+                insertedCurrencySign.classList.add('currency-sign');
+                listItemType.classList.add('other');
+
+            }   else {
+                    return;
             };
             listItemText.appendChild(listItem);
             listItemAmount.appendChild(currentItemAmount);

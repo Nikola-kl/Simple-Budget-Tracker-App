@@ -34,7 +34,8 @@
                             <option value="groceries">Groceries</option>
                             <option value="bills">Bills</option>
                             <option value="luxury">Luxury</option>
-                            <option value="health">Health</option>   
+                            <option value="health">Health</option>  
+                            <option value="other">Other</option> 
                             </select>
                         </label>
                         <button id="addButton" class="button">Add item</button>
@@ -62,15 +63,21 @@
                 <div class="remaining-budget">
                     <h2>Remaining budget</h2>
                     <hr>
-                    <h3 id="remainingBudget" class="hide"><span class="currency-sign"></span></h3>
+                        <div class="remaining-budget-amounts hide">
+                            <h3 id="remainingBudget">100</h3>
+                            <h4 class="currency-sign">0</h4>
+                        </div>
                 </div>
             </div>
             <div id="total" class="total">
                 <h2>Total expense</h2>
-                <h3 id="totalExpense"><span class="currency-sign"></span><!-- CALCULATE AND INSERT A TAG FROM JAVASCRIPT --></h3>
+                <div class="total-expense-amounts hide">
+                    <h3 id="totalExpense">100</h3>
+                    <h4 class="currency-sign">0</h4>
+                </div>
                 
-                <h2>Total savings</h2>
-                <h3 id="totalSavings"><span class="currency-sign"></span><!-- CALCULATE AND INSERT A TAG FROM JAVASCRIPT --></h3>
+               
+                
                
             </div>
         </div>

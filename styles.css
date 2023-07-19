@@ -134,28 +134,7 @@ hr {
     margin: 0 auto;
     height: 2px;
 }
-.remaining-budget h3 {
-    
-    font-size: 1.3rem;
-    padding-top: 1.2em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-}
 
-.total {
-    display: grid;
-    grid-template-columns: 2fr 3fr 2fr 3fr;
-}
-
-.total h2 {
-    margin: auto;
-    /* padding: 1.5em; */
-}
-
-.total h3 {
-    margin: auto 0;
-    font-size: 1.3rem;
-}
 
 
 .list-item {
@@ -223,12 +202,61 @@ hr {
     padding: 0.4em;
 }
 
+.remaining-budget-amounts {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remaining-budget-amounts > h3 {
+    font-size: 1.3rem;
+    padding-top: 1.2em;
+    padding-left: 0.5em;
+    padding-right: 0.15em;
+}
+.remaining-budget-amounts > .currency-sign {
+    font-size: 1.3rem;
+    padding-top: 1.2em;
+    padding-right: 0.5em;
+}
+
+
+
+
+.total {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.total-expense-amounts {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total h2 {
+    
+    padding: 0 1.2em;
+}
+
+.total-expense-amounts h3 {
+    margin: auto 0;
+    font-size: 1.3rem;
+    padding-right: 0.15em;
+}
+
+.total-expense-amounts > .currency-sign {
+    font-size: 1.3rem;
+    padding-right: 0.5em; 
+}
+
 
 
 
 
 .groceries {
-    background: rgba(84, 245, 218, 0.514);
+    background: rgba(97, 250, 224, 0.555);
 }
 
 .bills {
@@ -240,7 +268,11 @@ hr {
 }
 
 .health {
-    background: rgba(249, 186, 255, 0.404)
+    background: rgba(249, 186, 255, 0.404);
+}
+
+.other {
+    background: rgba(255, 255, 255, 0.548);
 }
 
 
@@ -260,6 +292,6 @@ hr {
 
 
 .currency-sign {
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
